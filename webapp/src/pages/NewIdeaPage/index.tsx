@@ -1,10 +1,5 @@
-import css from './index.module.scss'
+import { Segment } from '../../components/Segment'
 
 export const NewIdeaPage = () => {
-  return (
-    <div>
-      <h1 className={css.title}>New Idea</h1>
-      <div>Form will be here...</div>
-    </div>
-  )
+  return <Segment title="New Idea">Form will be here...</Segment>
 }
