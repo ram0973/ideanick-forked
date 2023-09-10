@@ -93,6 +93,9 @@ importers:
       formik:
         specifier: ^2.4.4
         version: 2.4.4(react@18.2.0)
+      formik-validator-zod:
+        specifier: ^1.0.2
+        version: 1.0.2(formik@2.4.4)(zod@3.22.2)
       include-media:
         specifier: ^2.0.0
         version: 2.0.0
@@ -111,6 +114,9 @@ importers:
       sass:
         specifier: ^1.66.1
         version: 1.66.1
+      zod:
+        specifier: ^3.22.2
+        version: 3.22.2
     devDependencies:
       '@types/react':
         specifier: ^18.2.15
@@ -3806,6 +3812,16 @@ packages:
       cross-spawn: 7.0.3
       signal-exit: 4.1.0
     dev: true
+
+  /formik-validator-zod@1.0.2(formik@2.4.4)(zod@3.22.2):
+    resolution: {integrity: sha512-1348tUpeHUCHf6HcNT/XLf2odSddbPgbUR1WAPFUM8vbXA+d6cj6sC1oV7aoo0dr9oFQm46gbz7pSdQiydFEuQ==}
+    peerDependencies:
+      formik: ^2.2.9
+      zod: ^3.19.1
+    dependencies:
+      formik: 2.4.4(react@18.2.0)
+      zod: 3.22.2
+    dev: false
 
   /formik@2.4.4(react@18.2.0):
     resolution: {integrity: sha512-MV99upag7fCC3JfsI60WcxhymwNZnJUcMcnGuoz6mDf78SUfBbKjmfcA9LzHx4lEmjzmOflhP7oqz+ZQv5eStg==}
