@@ -8,9 +8,10 @@ datasource db {
 }
 
 model Idea {
-  id          String @id @default(uuid())
-  nick        String @unique
+  id          String   @id @default(uuid())
+  nick        String   @unique
   name        String
   description String
   text        String
+  createdAt   DateTime @default(now())
 }
