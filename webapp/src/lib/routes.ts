@@ -9,3 +9,5 @@ export type ViewIdeaRouteParams = typeof viewIdeaRouteParams
 export const getViewIdeaRoute = ({ ideaNick }: ViewIdeaRouteParams) => `/ideas/${ideaNick}`
 
 export const getNewIdeaRoute = () => '/ideas/new'
+
+export const getSignUpRoute = () => '/sign-up'
