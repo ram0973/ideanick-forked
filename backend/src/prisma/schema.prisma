@@ -7,6 +7,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id        String   @id @default(uuid())
+  nick      String   @unique
+  password  String
+  createdAt DateTime @default(now())
+}
+
 model Idea {
   id          String   @id @default(uuid())
   nick        String   @unique
