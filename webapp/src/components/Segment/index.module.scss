@@ -18,4 +18,8 @@
   .content {
     margin-top: 12px;
   }
+
+  & + .segment {
+    margin-top: 40px;
+  }
 }
