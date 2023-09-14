@@ -10,6 +10,7 @@
   border-radius: $borderRadiusSmall;
   cursor: pointer;
   user-select: none;
+  position: relative;
 
   &:hover {
     background-color: #21b821;
@@ -23,5 +24,13 @@
     pointer-events: none;
     background-color: #929292;
     color: #d9d9d9;
+  }
+
+  &.loading {
+    @include loader($borderWidth: 3px, $size: 20px, $color: $white);
+
+    .text {
+      opacity: 0;
+    }
   }
 }
