@@ -10,9 +10,8 @@ import { trpc } from '../../../lib/trpc'
 
 export const EditProfilePage = withPageWrapper({
   authorizedOnly: true,
-  setProps: ({ ctx }) => ({
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    me: ctx.me!,
+  setProps: ({ getAuthorizedMe }) => ({
+    me: getAuthorizedMe(),
   }),
 })(({ me }) => {
   const trpcUtils = trpc.useContext()
