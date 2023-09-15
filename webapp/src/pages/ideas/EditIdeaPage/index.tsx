@@ -28,6 +28,7 @@ export const EditIdeaPage = withPageWrapper({
       idea,
     }
   },
+  title: ({ idea }) => `Edit Idea "${idea.name}"`,
 })(({ idea }) => {
   const navigate = useNavigate()
   const updateIdea = trpc.updateIdea.useMutation()
