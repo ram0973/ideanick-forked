@@ -5,6 +5,11 @@
 @mixin link($color: $blue, $hoverColor: $red) {
   color: $color;
   transition: color 200ms ease;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
 
   &:hover,
   &:active {
