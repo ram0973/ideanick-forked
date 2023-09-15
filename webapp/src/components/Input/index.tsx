@@ -12,7 +12,7 @@ export const Input = ({
   name: string
   label: string
   formik: FormikProps<any>
-  maxWidth?: number
+  maxWidth?: number | string
   type?: 'text' | 'password'
 }) => {
   const value = formik.values[name]
