@@ -9,6 +9,7 @@ const zEnv = z.object({
   JWT_SECRET: z.string().trim().min(1),
   PASSWORD_SALT: z.string().trim().min(1),
   INITIAL_ADMIN_PASSWORD: z.string().trim().min(1),
+  WEBAPP_URL: z.string().trim().min(1),
 })
 
 // eslint-disable-next-line node/no-process-env
