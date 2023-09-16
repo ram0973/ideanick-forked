@@ -2,23 +2,27 @@ import { promises as fs } from 'fs'
 import path from 'path'
 import { type Idea, type User } from '@prisma/client'
 import fg from 'fast-glob'
+import Handlebars from 'handlebars'
 import _ from 'lodash'
 import { env } from './env'
 
-const getHtmlTemplates = _.memoize(async () => {
+const getHbrTemplates = _.memoize(async () => {
   const htmlPathsPattern = path.resolve(__dirname, '../emails/dist/**/*.html')
   const htmlPaths = fg.sync(htmlPathsPattern)
-  const htmlTemplates: Record<string, string> = {}
+  const hbrTemplates: Record<string, HandlebarsTemplateDelegate> = {}
   for (const htmlPath of htmlPaths) {
     const templateName = path.basename(htmlPath, '.html')
-    htmlTemplates[templateName] = await fs.readFile(htmlPath, 'utf8')
+    const htmlTemplate = await fs.readFile(htmlPath, 'utf8')
+    hbrTemplates[templateName] = Handlebars.compile(htmlTemplate)
   }
-  return htmlTemplates
+  return hbrTemplates
 })
 
-const getHtmlTemplate = async (templateName: string) => {
-  const htmlTemplates = await getHtmlTemplates()
-  return htmlTemplates[templateName]
+const getEmailHtml = async (templateName: string, templateVariables: Record<string, string> = {}) => {
+  const hbrTemplates = await getHbrTemplates()
+  const hbrTemplate = hbrTemplates[templateName]
+  const html = hbrTemplate(templateVariables)
+  return html
 }
 
 const sendEmail = async ({
@@ -33,17 +37,16 @@ const sendEmail = async ({
   templateVariables?: Record<string, any>
 }) => {
   try {
-    const htmlTemplate = await getHtmlTemplate(templateName)
     const fullTemplateVaraibles = {
       ...templateVariables,
       homeUrl: env.WEBAPP_URL,
     }
+    const html = await getEmailHtml(templateName, fullTemplateVaraibles)
     console.info('sendEmail', {
       to,
       subject,
       templateName,
-      fullTemplateVaraibles,
-      htmlTemplate,
+      html,
     })
     return { ok: true }
   } catch (error) {
