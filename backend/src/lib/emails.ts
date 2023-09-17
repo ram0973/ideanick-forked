@@ -1,5 +1,6 @@
 import { promises as fs } from 'fs'
 import path from 'path'
+import { getNewIdeaRoute } from '@ideanick/webapp/src/lib/routes'
 import { type Idea, type User } from '@prisma/client'
 import fg from 'fast-glob'
 import Handlebars from 'handlebars'
@@ -64,7 +65,7 @@ export const sendWelcomeEmail = async ({ user }: { user: Pick<User, 'nick' | 'em
     templateName: 'welcome',
     templateVariables: {
       userNick: user.nick,
-      addIdeaUrl: `${env.WEBAPP_URL}/ideas/new`,
+      addIdeaUrl: `${env.WEBAPP_URL}${getNewIdeaRoute()}`,
     },
   })
 }
