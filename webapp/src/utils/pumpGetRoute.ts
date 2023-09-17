@@ -1,6 +1,7 @@
 import { useParams as useReactRouterParams } from 'react-router-dom'
 
-const baseUrl = 'http://localhost:8000'
+// eslint-disable-next-line node/no-process-env
+const baseUrl = process.env.VITE_WEBAPP_URL || process.env.WEBAPP_URL
 
 type PumpedGetRouteInputBase = {
   abs?: boolean
