@@ -7,6 +7,7 @@ ignorePatterns:
 plugins:
   - node
 rules:
+  no-new: off
   import/order:
     - error
     - alphabetize:
