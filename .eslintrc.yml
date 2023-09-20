@@ -32,12 +32,6 @@ rules:
     - error
     - skipTemplates: true
       skipStrings: true
-  no-console:
-    - error
-    - allow:
-        - info
-        - error
-        - warn
   node/no-process-env: error
   no-restricted-syntax:
     - error
