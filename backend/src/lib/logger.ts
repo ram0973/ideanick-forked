@@ -1,7 +1,8 @@
+import { serializeError } from 'serialize-error'
 import winston from 'winston'
 import { env } from './env'
 
-export const logger = winston.createLogger({
+export const winstonLogger = winston.createLogger({
   level: 'debug',
   format: winston.format.combine(
     winston.format.timestamp({
@@ -17,3 +18,18 @@ export const logger = winston.createLogger({
     }),
   ],
 })
+
+export const logger = {
+  info: (logType: string, message: string, meta?: Record<string, any>) => {
+    winstonLogger.info(message, { logType, ...meta })
+  },
+  error: (logType: string, error: any, meta?: Record<string, any>) => {
+    const serializedError = serializeError(error)
+    winstonLogger.error(serializedError.message || 'Unknown error', {
+      logType,
+      error,
+      errorStack: serializedError.stack,
+      ...meta,
+    })
+  },
+}
