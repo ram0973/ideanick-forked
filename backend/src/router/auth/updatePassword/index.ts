@@ -1,8 +1,8 @@
-import { trpc } from '../../../lib/trpc'
+import { trpcLoggedProcedure } from '../../../lib/trpc'
 import { getPasswordHash } from '../../../utils/getPasswordHash'
 import { zUpdatePasswordTrpcInput } from './input'
 
-export const updatePasswordTrpcRoute = trpc.procedure
+export const updatePasswordTrpcRoute = trpcLoggedProcedure
   .input(zUpdatePasswordTrpcInput)
   .mutation(async ({ ctx, input }) => {
     if (!ctx.me) {

@@ -1,8 +1,8 @@
 import _ from 'lodash'
-import { trpc } from '../../../lib/trpc'
+import { trpcLoggedProcedure } from '../../../lib/trpc'
 import { zGetIdeaTrpcInput } from './input'
 
-export const getIdeaTrpcRoute = trpc.procedure.input(zGetIdeaTrpcInput).query(async ({ ctx, input }) => {
+export const getIdeaTrpcRoute = trpcLoggedProcedure.input(zGetIdeaTrpcInput).query(async ({ ctx, input }) => {
   const rawIdea = await ctx.prisma.idea.findUnique({
     where: {
       nick: input.ideaNick,
