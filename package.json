@@ -5,9 +5,10 @@
   "scripts": {
     "b": "pnpm --filter @ideanick/backend",
     "w": "pnpm --filter @ideanick/webapp",
+    "sh": "pnpm --filter @ideanick/shared",
     "dev": "pnpm -r --parallel dev",
-    "types": "concurrently 'pnpm b types' 'pnpm w types'",
-    "lint": "concurrently 'pnpm b lint' 'pnpm w lint'",
+    "types": "concurrently 'pnpm b types' 'pnpm w types' 'pnpm sh types'",
+    "lint": "concurrently 'pnpm b lint' 'pnpm w lint' 'pnpm sh lint'",
     "prettify": "pnpm -r --parallel prettify",
     "prepare": "husky install"
   },

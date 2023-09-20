@@ -1,6 +1,6 @@
 import { zSignUpTrpcInput } from '@ideanick/backend/src/router/auth/signUp/input'
+import { zPasswordsMustBeTheSame, zStringRequired } from '@ideanick/shared/src/zod'
 import Cookies from 'js-cookie'
-import { z } from 'zod'
 import { Alert } from '../../../components/Alert'
 import { Button } from '../../../components/Button'
 import { FormItems } from '../../../components/FormItems'
@@ -25,17 +25,9 @@ export const SignUpPage = withPageWrapper({
     },
     validationSchema: zSignUpTrpcInput
       .extend({
-        passwordAgain: z.string().min(1),
+        passwordAgain: zStringRequired,
       })
-      .superRefine((val, ctx) => {
-        if (val.password !== val.passwordAgain) {
-          ctx.addIssue({
-            code: z.ZodIssueCode.custom,
-            message: 'Passwords must be the same',
-            path: ['passwordAgain'],
-          })
-        }
-      }),
+      .superRefine(zPasswordsMustBeTheSame('password', 'passwordAgain')),
     onSubmit: async (values) => {
       const { token } = await signUp.mutateAsync(values)
       Cookies.set('token', token, { expires: 99999 })

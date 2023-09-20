@@ -1,6 +1,6 @@
-import { z } from 'zod'
+import { zStringRequired } from '@ideanick/shared/src/zod'
 import { zCreateIdeaTrpcInput } from '../createIdea/input'
 
 export const zUpdateIdeaTrpcInput = zCreateIdeaTrpcInput.extend({
-  ideaId: z.string().min(1),
+  ideaId: zStringRequired,
 })

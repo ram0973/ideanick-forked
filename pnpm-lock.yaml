@@ -56,6 +56,9 @@ importers:
 
   backend:
     dependencies:
+      '@ideanick/shared':
+        specifier: workspace:*
+        version: link:../shared
       '@ideanick/webapp':
         specifier: workspace:*
         version: link:../webapp
@@ -145,11 +148,24 @@ importers:
         specifier: ^5.2.0
         version: 5.2.0
 
+  shared:
+    dependencies:
+      zod:
+        specifier: ^3.21.4
+        version: 3.22.2
+    devDependencies:
+      '@types/node':
+        specifier: 20.3.1
+        version: 20.3.1
+
   webapp:
     dependencies:
       '@ideanick/backend':
         specifier: workspace:*
         version: link:../backend
+      '@ideanick/shared':
+        specifier: workspace:*
+        version: link:../shared
       '@tanstack/react-query':
         specifier: ^4.32.6
         version: 4.32.6(react-dom@18.2.0)(react@18.2.0)
@@ -2395,6 +2411,10 @@ packages:
 
   /@types/minimist@1.2.2:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
+    dev: true
+
+  /@types/node@20.3.1:
+    resolution: {integrity: sha512-EhcH/wvidPy1WeML3TtYFGR83UzjxeWRen9V402T8aUGYsCHOmfoisV3ZSg03gAFIbLq8TnWOJ0f4cALtnSEUg==}
     dev: true
 
   /@types/node@20.5.0:
