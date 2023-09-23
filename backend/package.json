@@ -9,6 +9,9 @@
     "copy-emails": "copyfiles ./src/emails/dist/*.html ./dist/backend",
     "build-ts": "rimraf ./dist && tsc --build ./tsconfig.json",
     "build": "pnpm build-ts && pnpm build-emails && pnpm copy-emails",
+    "sentry-release": "dotenv -- bash -c 'sentry-cli releases new ${SOURCE_VERSION} --finalize --org ideanick-f76e1b5dd --project backend --auth-token ${SENTRY_AUTH_TOKEN}'",
+    "sentry-sourcemaps": "dotenv -- bash -c 'sentry-cli releases files ${SOURCE_VERSION} upload-sourcemaps ./dist --org ideanick-f76e1b5dd --project backend'",
+    "sentry": "pnpm sentry-release && pnpm sentry-sourcemaps",
     "start": "node ./dist/backend/src/index.js",
     "pmd": "prisma migrate dev",
     "pgc": "prisma generate",
@@ -24,6 +27,7 @@
     "@ideanick/shared": "workspace:*",
     "@ideanick/webapp": "workspace:*",
     "@prisma/client": "^5.2.0",
+    "@sentry/integrations": "^7.70.0",
     "@sentry/node": "^7.70.0",
     "@trpc/server": "^10.37.1",
     "axios": "^1.5.0",
@@ -50,6 +54,7 @@
     "zod": "^3.22.2"
   },
   "devDependencies": {
+    "@sentry/cli": "^2.21.1",
     "@types/cors": "^2.8.13",
     "@types/cron": "^2.4.0",
     "@types/debug": "^4.1.8",
@@ -60,6 +65,7 @@
     "@types/passport": "^1.0.12",
     "@types/passport-jwt": "^3.0.9",
     "@types/triple-beam": "^1.3.3",
+    "dotenv-cli": "^7.3.0",
     "eslint-plugin-node": "^11.1.0",
     "prisma": "^5.2.0"
   }
