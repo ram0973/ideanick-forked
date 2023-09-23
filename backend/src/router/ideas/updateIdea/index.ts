@@ -1,3 +1,4 @@
+import { ExpectedError } from '../../../lib/error'
 import { trpcLoggedProcedure } from '../../../lib/trpc'
 import { canEditIdea } from '../../../utils/can'
 import { zUpdateIdeaTrpcInput } from './input'
@@ -25,7 +26,7 @@ export const updateIdeaTrpcRoute = trpcLoggedProcedure.input(zUpdateIdeaTrpcInpu
       },
     })
     if (exIdea) {
-      throw new Error('Idea with this nick already exists')
+      throw new ExpectedError('Idea with this nick already exists')
     }
   }
   await ctx.prisma.idea.update({
