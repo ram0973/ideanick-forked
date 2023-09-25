@@ -2,7 +2,7 @@ import { Prisma, type Idea } from '@prisma/client'
 import { type AppContext } from '../lib/ctx'
 import { sendMostLikedIdeasEmail } from '../lib/emails'
 
-export const getMostLikedIdeas = async (ctx: AppContext, limit: number = 10, now?: Date) => {
+export const getMostLikedIdeas = async ({ ctx, limit = 10, now }: { ctx: AppContext; limit?: number; now?: Date }) => {
   const sqlNow = now ? Prisma.sql`${now.toISOString()}::timestamp` : Prisma.sql`now()`
   return await ctx.prisma.$queryRaw<Array<Pick<Idea, 'id' | 'nick' | 'name'> & { thisMonthLikesCount: number }>>`
   with "topIdeas" as (
@@ -26,8 +26,16 @@ export const getMostLikedIdeas = async (ctx: AppContext, limit: number = 10, now
 `
 }
 
-export const notifyAboutMostLikedIdeas = async (ctx: AppContext) => {
-  const mostLikedIdeas = await getMostLikedIdeas(ctx)
+export const notifyAboutMostLikedIdeas = async ({
+  ctx,
+  limit,
+  now,
+}: {
+  ctx: AppContext
+  limit?: number
+  now?: Date
+}) => {
+  const mostLikedIdeas = await getMostLikedIdeas({ ctx, limit, now })
   if (!mostLikedIdeas.length) {
     return
   }

@@ -6,6 +6,7 @@ import { createAppContext, type AppContext } from './lib/ctx'
 import { env } from './lib/env'
 import { logger } from './lib/logger'
 import { applyPassportToExpressApp } from './lib/passport'
+import { initSentry } from './lib/sentry'
 import { applyTrpcToExpressApp } from './lib/trpc'
 import { trpcRouter } from './router'
 import { presetDb } from './scripts/presetDb'
@@ -13,6 +14,7 @@ import { presetDb } from './scripts/presetDb'
 void (async () => {
   let ctx: AppContext | null = null
   try {
+    initSentry()
     ctx = createAppContext()
     await presetDb(ctx)
     const expressApp = express()
