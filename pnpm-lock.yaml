@@ -207,10 +207,16 @@ importers:
 
   shared:
     dependencies:
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       zod:
         specifier: ^3.21.4
         version: 3.22.2
     devDependencies:
+      '@types/lodash':
+        specifier: ^4.14.198
+        version: 4.14.198
       '@types/node':
         specifier: 20.3.1
         version: 20.3.1
