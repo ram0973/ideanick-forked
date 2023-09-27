@@ -13,6 +13,7 @@ model User {
   nick        String           @unique
   email       String           @unique
   name        String           @default("")
+  avatar      String?
   password    String
   createdAt   DateTime         @default(now())
   ideas       Idea[]

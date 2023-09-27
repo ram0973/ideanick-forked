@@ -14,6 +14,7 @@ export const getIdeaTrpcRoute = trpcLoggedProcedure.input(zGetIdeaTrpcInput).que
           id: true,
           nick: true,
           name: true,
+          avatar: true,
         },
       },
       ideasLikes: {
