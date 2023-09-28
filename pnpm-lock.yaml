@@ -283,6 +283,9 @@ importers:
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
+      mixpanel-browser:
+        specifier: ^2.47.0
+        version: 2.47.0
       nanostores:
         specifier: ^0.9.3
         version: 0.9.3
@@ -332,6 +335,9 @@ importers:
       '@types/lodash':
         specifier: ^4.14.198
         version: 4.14.198
+      '@types/mixpanel-browser':
+        specifier: ^2.47.3
+        version: 2.47.3
       '@types/react':
         specifier: ^18.2.15
         version: 18.2.15
@@ -4005,6 +4011,10 @@ packages:
 
   /@types/minimist@1.2.2:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
+    dev: true
+
+  /@types/mixpanel-browser@2.47.3:
+    resolution: {integrity: sha512-lum9ZdfLihJ89XoCrBjB8le/Vg6ohYSR2/3AdfLWGZdhUBEgftncDO9+0uW08FSN6SLqy2s9zCf55YV5sNLNYA==}
     dev: true
 
   /@types/ms@0.7.31:
@@ -8149,6 +8159,10 @@ packages:
     resolution: {integrity: sha512-LhbbwCfz3vsb12j/WkWQPZfKTsgqIe1Nf/ti1pKjYESGLHIVjWU96G9/ljLH4F9mWNVhlQOm0VySdAWzf05dpg==}
     engines: {node: '>=16 || 14 >=14.17'}
     dev: true
+
+  /mixpanel-browser@2.47.0:
+    resolution: {integrity: sha512-Ldrva0fRBEIFWmEibBQO1PulfpJVF3pf28Guk09lDirDaSQqqU/xs9zQLwN2rL5VwVtsP1aD3JaCgaa98EjojQ==}
+    dev: false
 
   /mjml-accordion@4.14.1:
     resolution: {integrity: sha512-dpNXyjnhYwhM75JSjD4wFUa9JgHm86M2pa0CoTzdv1zOQz67ilc4BoK5mc2S0gOjJpjBShM5eOJuCyVIuAPC6w==}

@@ -11,6 +11,7 @@ import { FormItems } from '../../../components/FormItems'
 import { Icon } from '../../../components/Icon'
 import { Segment } from '../../../components/Segment'
 import { useForm } from '../../../lib/form'
+import { mixpanelSetIdeaLike } from '../../../lib/mixpanel'
 import { withPageWrapper } from '../../../lib/pageWrapper'
 import { getEditIdeaRoute, getViewIdeaRoute } from '../../../lib/routes'
 import { trpc } from '../../../lib/trpc'
@@ -41,7 +42,13 @@ const LikeButton = ({ idea }: { idea: NonNullable<TrpcRouterOutput['getIdea']['i
     <button
       className={css.likeButton}
       onClick={() => {
-        void setIdeaLike.mutateAsync({ ideaId: idea.id, isLikedByMe: !idea.isLikedByMe })
+        void setIdeaLike
+          .mutateAsync({ ideaId: idea.id, isLikedByMe: !idea.isLikedByMe })
+          .then(({ idea: { isLikedByMe } }) => {
+            if (isLikedByMe) {
+              mixpanelSetIdeaLike(idea)
+            }
+          })
       }}
     >
       <Icon size={32} className={css.likeIcon} name={idea.isLikedByMe ? 'likeFilled' : 'likeEmpty'} />

@@ -15,5 +15,5 @@ export const signInTrpcRoute = trpcLoggedProcedure.input(zSignInTrpcInput).mutat
     throw new ExpectedError('Wrong nick or password')
   }
   const token = signJWT(user.id)
-  return { token }
+  return { token, userId: user.id }
 })

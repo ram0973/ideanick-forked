@@ -6,6 +6,7 @@ import { FormItems } from '../../../components/FormItems'
 import { Input } from '../../../components/Input'
 import { Segment } from '../../../components/Segment'
 import { useForm } from '../../../lib/form'
+import { mixpanelIdentify, mixpanelTrackSignIn } from '../../../lib/mixpanel'
 import { withPageWrapper } from '../../../lib/pageWrapper'
 import { trpc } from '../../../lib/trpc'
 
@@ -22,7 +23,9 @@ export const SignInPage = withPageWrapper({
     },
     validationSchema: zSignInTrpcInput,
     onSubmit: async (values) => {
-      const { token } = await signIn.mutateAsync(values)
+      const { token, userId } = await signIn.mutateAsync(values)
+      mixpanelIdentify(userId)
+      mixpanelTrackSignIn()
       Cookies.set('token', token, { expires: 99999 })
       void trpcUtils.invalidate()
     },
