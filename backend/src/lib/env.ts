@@ -5,20 +5,25 @@ import { zEnvHost, zEnvNonemptyTrimmed, zEnvNonemptyTrimmedRequiredOnNotLocal } 
 import * as dotenv from 'dotenv'
 import { z } from 'zod'
 
-const findEnvFilePath = (dir: string): string | null => {
-  const maybeEnvFilePath = path.join(dir, '.env')
+const findEnvFilePath = (dir: string, pathPart: string): string | null => {
+  const maybeEnvFilePath = path.join(dir, pathPart)
   if (fs.existsSync(maybeEnvFilePath)) {
     return maybeEnvFilePath
   }
   if (dir === '/') {
     return null
   }
-  return findEnvFilePath(path.dirname(dir))
+  return findEnvFilePath(path.dirname(dir), pathPart)
 }
-const envFilePath = findEnvFilePath(__dirname)
-if (envFilePath) {
-  dotenv.config({ path: envFilePath, override: true })
-  dotenv.config({ path: `${envFilePath}.${process.env.NODE_ENV}`, override: true })
+const webappEnvFilePath = findEnvFilePath(__dirname, 'webapp/.env')
+if (webappEnvFilePath) {
+  dotenv.config({ path: webappEnvFilePath, override: true })
+  dotenv.config({ path: `${webappEnvFilePath}.${process.env.NODE_ENV}`, override: true })
+}
+const backendEnvFilePath = findEnvFilePath(__dirname, 'backend/.env')
+if (backendEnvFilePath) {
+  dotenv.config({ path: backendEnvFilePath, override: true })
+  dotenv.config({ path: `${backendEnvFilePath}.${process.env.NODE_ENV}`, override: true })
 }
 
 const zEnv = z.object({
