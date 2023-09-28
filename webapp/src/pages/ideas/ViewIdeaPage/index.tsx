@@ -1,6 +1,7 @@
 import type { TrpcRouterOutput } from '@ideanick/backend/src/router'
 import { canBlockIdeas, canEditIdea } from '@ideanick/backend/src/utils/can'
 import { getAvatarUrl, getCloudinaryUploadUrl } from '@ideanick/shared/src/cloudinary'
+import { getS3UploadName, getS3UploadUrl } from '@ideanick/shared/src/s3'
 import format from 'date-fns/format'
 import ImageGallery from 'react-image-gallery'
 import { Alert } from '../../../components/Alert'
@@ -103,6 +104,14 @@ export const ViewIdeaPage = withPageWrapper({
             thumbnail: getCloudinaryUploadUrl(image, 'image', 'preview'),
           }))}
         />
+      </div>
+    )}
+    {idea.certificate && (
+      <div className={css.certificate}>
+        Certificate:{' '}
+        <a className={css.certificateLink} target="_blank" href={getS3UploadUrl(idea.certificate)} rel="noreferrer">
+          {getS3UploadName(idea.certificate)}
+        </a>
       </div>
     )}
     <div className={css.text} dangerouslySetInnerHTML={{ __html: idea.text }} />

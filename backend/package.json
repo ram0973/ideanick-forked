@@ -26,6 +26,8 @@
     "schema": "./src/prisma/schema.prisma"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.421.0",
+    "@aws-sdk/s3-request-presigner": "^3.421.0",
     "@ideanick/shared": "workspace:*",
     "@ideanick/webapp": "workspace:*",
     "@prisma/client": "^5.2.0",
@@ -48,6 +50,7 @@
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
     "picocolors": "^1.0.0",
+    "randomstring": "^1.3.0",
     "react-router-dom": "^6.15.0",
     "serialize-error": "8.1.0",
     "superjson": "^1.13.1",
@@ -68,6 +71,7 @@
     "@types/node": "^20.5.0",
     "@types/passport": "^1.0.12",
     "@types/passport-jwt": "^3.0.9",
+    "@types/randomstring": "^1.1.9",
     "@types/triple-beam": "^1.3.3",
     "dotenv-cli": "^7.3.0",
     "eslint-plugin-node": "^11.1.0",
