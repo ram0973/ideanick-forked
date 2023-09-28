@@ -7,6 +7,7 @@ import { createAppContext, type AppContext } from './lib/ctx'
 import { logger } from './lib/logger'
 import { applyPassportToExpressApp } from './lib/passport'
 import { initSentry } from './lib/sentry'
+import { applyServeWebApp } from './lib/serveWebApp'
 import { applyTrpcToExpressApp } from './lib/trpc'
 import { trpcRouter } from './router'
 import { presetDb } from './scripts/presetDb'
@@ -24,6 +25,7 @@ void (async () => {
     })
     applyPassportToExpressApp(expressApp, ctx)
     await applyTrpcToExpressApp(expressApp, ctx, trpcRouter)
+    await applyServeWebApp(expressApp)
     applyCron(ctx)
     expressApp.use((error: unknown, req: express.Request, res: express.Response, next: express.NextFunction) => {
       logger.error('express', error)
