@@ -40,6 +40,14 @@
   }
 }
 
+.documents {
+  margin: 10px 0;
+
+  .documentLink {
+    @include link;
+  }
+}
+
 .text {
   font-size: 14px;
 

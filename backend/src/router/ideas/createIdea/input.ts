@@ -8,4 +8,5 @@ export const zCreateIdeaTrpcInput = z.object({
   text: zStringMin(100),
   images: z.array(zStringRequired),
   certificate: z.string().nullable(),
+  documents: z.array(zStringRequired),
 })

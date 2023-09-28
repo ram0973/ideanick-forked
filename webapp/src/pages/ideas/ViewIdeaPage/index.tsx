@@ -3,6 +3,7 @@ import { canBlockIdeas, canEditIdea } from '@ideanick/backend/src/utils/can'
 import { getAvatarUrl, getCloudinaryUploadUrl } from '@ideanick/shared/src/cloudinary'
 import { getS3UploadName, getS3UploadUrl } from '@ideanick/shared/src/s3'
 import format from 'date-fns/format'
+import { Fragment } from 'react'
 import ImageGallery from 'react-image-gallery'
 import { Alert } from '../../../components/Alert'
 import { Button, LinkButton } from '../../../components/Button'
@@ -112,6 +113,19 @@ export const ViewIdeaPage = withPageWrapper({
         <a className={css.certificateLink} target="_blank" href={getS3UploadUrl(idea.certificate)} rel="noreferrer">
           {getS3UploadName(idea.certificate)}
         </a>
+      </div>
+    )}
+    {!!idea.documents.length && (
+      <div className={css.documents}>
+        Documents:{' '}
+        {idea.documents.map((document) => (
+          <Fragment key={document}>
+            <br />
+            <a className={css.documentLink} target="_blank" href={getS3UploadUrl(document)} rel="noreferrer">
+              {getS3UploadName(document)}
+            </a>
+          </Fragment>
+        ))}
       </div>
     )}
     <div className={css.text} dangerouslySetInnerHTML={{ __html: idea.text }} />
