@@ -1,9 +1,9 @@
 // eslint-disable-next-line import/order
+import { env } from './lib/env'
 import cors from 'cors'
 import express from 'express'
 import { applyCron } from './lib/cron'
 import { createAppContext, type AppContext } from './lib/ctx'
-import { env } from './lib/env'
 import { logger } from './lib/logger'
 import { applyPassportToExpressApp } from './lib/passport'
 import { initSentry } from './lib/sentry'
