@@ -14,6 +14,10 @@
     "dcc": "dotenv -e ./.env.docker -e ./backend/.env -e ./webapp/.env -- bash -c 'docker compose config'",
     "dcb": "dotenv -e ./.env.docker -e ./backend/.env -e ./webapp/.env -- bash -c 'docker compose build'",
     "dcu": "dotenv -e ./.env.docker -e ./backend/.env -e ./webapp/.env -- bash -c 'docker compose up'",
+    "dth": "docker tag ideanick-image registry.heroku.com/ideanickinfo/web",
+    "hl": "heroku login && heroku container:login",
+    "dph": "docker push registry.heroku.com/ideanickinfo/web",
+    "hr": "heroku container:release web -a ideanickinfo",
     "prepare": "husky install"
   },
   "dependencies": {
