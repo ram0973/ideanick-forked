@@ -16,6 +16,7 @@
     "start": "cross-env NODE_ENV=production node ./dist/backend/src/index.js",
     "pmd": "prisma migrate dev",
     "pmt": "dotenv -e ./.env.test prisma migrate deploy",
+    "pmp": "dotenv -e ./.env.production prisma migrate deploy",
     "pgc": "prisma generate",
     "types": "tsc --noEmit --project ./tsconfig.json",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --ext .ts .",
@@ -50,6 +51,7 @@
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
     "picocolors": "^1.0.0",
+    "prisma": "^5.2.0",
     "randomstring": "^1.3.0",
     "react-router-dom": "^6.15.0",
     "serialize-error": "8.1.0",
@@ -73,8 +75,6 @@
     "@types/passport-jwt": "^3.0.9",
     "@types/randomstring": "^1.1.9",
     "@types/triple-beam": "^1.3.3",
-    "dotenv-cli": "^7.3.0",
-    "eslint-plugin-node": "^11.1.0",
-    "prisma": "^5.2.0"
+    "eslint-plugin-node": "^11.1.0"
   }
 }
