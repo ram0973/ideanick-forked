@@ -35,7 +35,7 @@ export const winstonLogger = winston.createLogger({
                 debug: (str: string) => pc.cyan(str),
               }[logData.level as 'info' | 'error' | 'debug']
               const levelAndType = `${logData.level} ${logData.logType}`
-              const topMessage = `${setColor(levelAndType)} ${pc.green(logData.timestamp)}${EOL}${logData.message}`
+              const topMessage = `${setColor(levelAndType)} ${pc.green(logData.timestamp as string)}${EOL}${logData.message}`
 
               const visibleMessageTags = omit(logData, [
                 'level',

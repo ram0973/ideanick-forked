@@ -1,0 +1,19 @@
+services:
+  postgres:
+    build:
+      dockerfile: ./docker/postgresql/Dockerfile
+    environment:
+      - POSTGRES_DB=ideanick
+      - POSTGRES_USER=ideanick
+      - POSTGRES_PASSWORD=ideanick
+    ports:
+      - "5432:5432"
+  postgres-test:
+    build:
+      dockerfile: ./docker/postgresql/Dockerfile
+    environment:
+      - POSTGRES_DB=ideanick-test
+      - POSTGRES_USER=ideanick-test
+      - POSTGRES_PASSWORD=ideanick-test
+    ports:
+      - "5433:5432"   

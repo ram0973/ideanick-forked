@@ -6,6 +6,7 @@ parserOptions:
 overrides:
   - files:
       - vite.config.ts
+      - ./src/lib/parsePublicEnv.ts
     parserOptions:
       project: ./tsconfig.node.json
 rules:

@@ -13,11 +13,11 @@ const checkFileExists = async (filePath: string) => {
 }
 
 const findWebappDistDir = async (dir: string): Promise<string | null> => {
-  const maybeWebappDistDir = path.resolve(dir, 'webapp/dist')
+  const maybeWebappDistDir = path.join(dir, 'webapp', 'dist')
   if (await checkFileExists(maybeWebappDistDir)) {
     return maybeWebappDistDir
   }
-  if (dir === '/') {
+  if (path.parse(dir).root === dir) {
     return null
   }
   return await findWebappDistDir(path.dirname(dir))
