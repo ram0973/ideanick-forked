@@ -42,8 +42,8 @@ cp webapp/env.example webapp/.env
 ```bash
 pnpm types
 pnpm lint
-pnpm b build
 pnpm b prepare
+pnpm b build
 docker compose up
 pnpm b pmt
 pnpm b pmd
