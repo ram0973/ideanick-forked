@@ -49,6 +49,9 @@ pnpm b pmt
 pnpm b pmd
 ```
 
+### Тестирование
+pnpm test
+
 ### Запуск в dev среде
 
 ```bash
